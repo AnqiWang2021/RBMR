@@ -1,32 +1,32 @@
-#' main function for RBMR (only one block)
+#' RBMR function for only one LD block
 #'
-#' @param bh1 A vector of SNP effects on the exposure variable, usually obtained from a GWAS
-#' @param bh2 A vector of SNP effects on the outcome varible, usually obtained from a GWAS
-#' @param se1 A vector of standard errors of \code{bh1}
-#' @param se2 A vector of standard errors of \code{bh2}
-#' @param sgga2 A constant, initialize the true standard error of exposure \code{bh1}
-#' @param sgal2 A constant, initialize the true standard error of direct effect \code{bh1}
-#' @param beta0 A constant, initialize the true value of causal effect
-#' @param R A matrix, LD matrix
-#' @param alphag A constant, initialize the parameter of multivariate generalized t-distribution
-#' @param betag A constant, initialize the parameter of multivariate generalized t-distribution
-#' @param constr 0 or 1, 0 represents the likelihood ratio test of alternative hypothesis, 1 represents the likelihood ratio test of null hypothesis.
-#' @param epsStopLogLik Numerical precision
-#' @param maxIter The maximum number of iterations
-#' @param gamma A vector, intialize the true value of the mean of the exposure
-#' @param alpha A vector, intialize the true value of the mean of the direct effect
+#' When the number of LD block is 1, this function estimates the causal effect.
+#'
+#' @param bh1 A vector of SNP effects on the exposure variable, usually obtained from a GWAS.
+#' @param bh2 A vector of SNP effects on the outcome varible, usually obtained from a GWAS.
+#' @param se1 A vector of standard errors of \code{bh1}.
+#' @param se2 A vector of standard errors of \code{bh2}.
+#' @param R A matrix, LD matrix.
+#' @param gamma A vector to intialize the true value of the mean of the exposure.
+#' @param alpha A vector to intialize the true value of the mean of the direct effect.
+#' @param sgga2 A constant to initialize the true value of the standard error of exposure \code{bh1}.
+#' @param sgal2 A constant to initialize the true value of the standard error of direct effect \code{bh2}.
+#' @param beta0 A constant, initialize the true value of causal effect.
+#' @param constr 0 or 1, when constr is equal to 0, the function calculates the ELBO under the alternative hypothesis, when constr is equal to 1, the function calculates the ELBO under the null hypothesis.
+#' @param epsStopLogLik Numerical precision.
+#' @param maxIter Maximum number of interations to solve the estimating equations.
 #'
 #' @return A list
 #' \describe{
-#' \item{beta0}{Estimated causal effect}
-#' \item{sgal2}{Standard error of direct effect}
-#' \item{sgga2}{Standard error of exposure}
-#' \item{Iteration}{Iteration}
-#' \item{loglik}{the result of loglikelihood at convergence}
-#' \item{diff}{The difference between the value of loglikelihood at convergence and the value of the loglikelihood of previous itertaion}
-#' \item{tstat}{The value of the loglikelihood ratio test}
-#' \item{alpha_w}{The parameter of multivariate generalized t distribution}
-#' \item{beta_w}{The parameter of multivariate generalized t distribution}
+#' \item{beta0}{Estimated causal effect.}
+#' \item{sgal2}{Standard error of the direct effec.}
+#' \item{sgga2}{Standard error of the exposure.}
+#' \item{Iteration}{Number of iterations.}
+#' \item{loglik}{The result of loglikelihood at convergence.}
+#' \item{diff}{The difference between the value of loglikelihood at convergence and the value of the loglikelihood of previous itertaion.}
+#' \item{tstat}{The value of the ELBO.}
+#' \item{alpha_w}{The parameter of multivariate generalized t distribution.}
+#' \item{beta_w}{The parameter of multivariate generalized t distribution.}
 #' }
 #' @export
 #'
