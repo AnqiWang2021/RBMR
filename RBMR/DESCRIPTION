@@ -1,0 +1,12 @@
+Package: RBMR
+Type: Package
+Title: Robust Two-sample Bayesian MendelianRandomization Method Accounting for LinkageDisequilibrium and Idiosyncratic Pleiotropy (RBMR)
+Version: 0.1.0
+Author: Anqi Wang
+Maintainer: The package maintainer <yourself@somewhere.net>
+Depends: R (>= 3.1.0)
+Description: Inference the causality based on RBMR method
+License: GPL
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
