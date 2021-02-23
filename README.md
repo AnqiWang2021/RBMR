@@ -1,5 +1,5 @@
 # RBMR：A Two-Sample Robust Bayesian Mendelian Randomization Method Accounting for Linkage Disequilibrium and Idiosyncratic Pleiotropy
-**RBMR** is a Mendelian randomization (MR) method to estimate the causal effect by accounting for the LD structure. systematic pleiotropy and idiosyncratic pleiotropy simultaneously in a unified framework. 
+**RBMR** is a Mendelian randomization (MR) method to estimate the causal effect by accounting for the LD structure, systematic pleiotropy and idiosyncratic pleiotropy simultaneously in a unified framework. 
 ## Installation
 To install the development version of **RBMR**, it's easiest to use the 'devtools' package.
 
