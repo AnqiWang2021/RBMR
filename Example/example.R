@@ -1,4 +1,6 @@
+#Fit RBMR using CAD-CAD study
 library(MR.LDP)
+library(RBMR)
 filescreen<-'heart attack myocardial infarction.txt'
 fileexposure<-'exposure c4d.txt'
 fileoutcome<-'outcome cardiogram.txt'
@@ -53,7 +55,10 @@ RBMR_Ha<- RBMR_func_block(F4Rblock, block_inf, nblocks, bh1, bh2, se1, se2,
 
 RBMR_H0<- RBMR_func_block(F4Rblock, block_inf, nblocks, bh1, bh2, se1, se2,
                           gamma, alpha, sgga2, sgal2, beta0, constr=1, epsStopLogLik, IterMax,alphag,betag)
+#calculate the p-value
 tstat <- 2*(RBMR_Ha$tstat-RBMR_H0$tstat)
 pvalue<-pchisq(tstat,1,lower.tail=F)
+#causal effect
 beta_hat <- RBMR_Ha$beta0
+#standard error of causal effect
 se_hat <- abs(beta_hat/sqrt(tstat))
