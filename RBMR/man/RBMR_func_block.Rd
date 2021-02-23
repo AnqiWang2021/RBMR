@@ -19,7 +19,9 @@ RBMR_func_block(
   beta0,
   constr,
   epsStopLogLik,
-  maxIter
+  IterMax,
+  alphag,
+  betag
 )
 }
 \arguments{
@@ -51,7 +53,11 @@ RBMR_func_block(
 
 \item{epsStopLogLik}{Numerical precision}
 
-\item{maxIter}{Maximum number of interations to solve the estimating equations.}
+\item{IterMax}{Maximum number of interations to solve the estimating equations.}
+
+\item{alphag}{A constant to initialize the parameter of multivariate generalize t distribution}
+
+\item{betag}{A constant to initialize the parameter of multivariate generalize t distribution}
 }
 \value{
 A list

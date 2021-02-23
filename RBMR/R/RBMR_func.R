@@ -13,8 +13,13 @@
 #' @param sgal2 A constant to initialize the true value of the standard error of direct effect \code{bh2}.
 #' @param beta0 A constant, initialize the true value of causal effect.
 #' @param constr 0 or 1, when constr is equal to 0, the function calculates the ELBO under the alternative hypothesis, when constr is equal to 1, the function calculates the ELBO under the null hypothesis.
-#' @param epsStopLogLik Numerical precision.
+#' @param alphag A constant to initialize the parameter of multivariate generalize t distribution
+#' @param betag A constant to initialize the parameter of multivariate generalize t distribution
 #' @param maxIter Maximum number of interations to solve the estimating equations.
+#' @param epsStopLogLik Numerical precision.
+#'
+#' @param
+#'
 #'
 #' @return A list
 #' \describe{
@@ -30,7 +35,7 @@
 #' }
 #' @export
 #'
-#' @examples
+
 RBMR_func<-function(bh1,bh2,se1,se2,gamma,alpha,sgga2,sgal2,beta0,R,alphag,betag,constr,epsStopLogLik,maxIter)
 {
   p<-length(bh1)

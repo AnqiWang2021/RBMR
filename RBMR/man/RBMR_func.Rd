@@ -43,6 +43,10 @@ RBMR_func(
 
 \item{R}{A matrix, LD matrix.}
 
+\item{alphag}{A constant to initialize the parameter of multivariate generalize t distribution}
+
+\item{betag}{A constant to initialize the parameter of multivariate generalize t distribution}
+
 \item{constr}{0 or 1, when constr is equal to 0, the function calculates the ELBO under the alternative hypothesis, when constr is equal to 1, the function calculates the ELBO under the null hypothesis.}
 
 \item{epsStopLogLik}{Numerical precision.}

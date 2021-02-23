@@ -16,7 +16,9 @@
 #' @param beta0 A constant, initialize the true value of causal effect.
 #' @param constr 0 or 1, when constr is equal to 0, the function calculates the ELBO under the alternative hypothesis, when constr is equal to 1, the function calculates ELBO under the null hypothesis.
 #' @param epsStopLogLik Numerical precision
-#' @param maxIter Maximum number of interations to solve the estimating equations.
+#' @param alphag A constant to initialize the parameter of multivariate generalize t distribution
+#' @param IterMax Maximum number of interations to solve the estimating equations.
+#' @param betag A constant to initialize the parameter of multivariate generalize t distribution
 #'
 #' @return A list
 #' \describe{
@@ -34,7 +36,7 @@
 #'
 #' @examples
 RBMR_func_block<-function(F4Rblock, block_inf, nblocks, bh1, bh2, se1, se2,
-                          gamma, alpha, sgga2, sgal2, beta0, constr, epsStopLogLik, maxIter){
+                          gamma, alpha, sgga2, sgal2, beta0, constr, epsStopLogLik, IterMax,alphag,betag){
 
   #define
   F4mu<-list();F4muA<-list();F4se1<-list();F4se2<-list()
@@ -95,11 +97,11 @@ RBMR_func_block<-function(F4Rblock, block_inf, nblocks, bh1, bh2, se1, se2,
   for(iter in 1:IterMax){
     for(nb1 in 1:nblocks){
 
-      #sigma_i^2的估计值
+
       v2 <- 1/((beta0^2)*F4diaginsGRinsG[[nb1]] + (xi^2)*F4diaginsgRinsg[[nb1]] + 1/ sgga2)
       F4v2[[nb1]]<-v2
       p_block<-NB[nb1]
-      #miu_j的估计值
+
       for(j in 1:(p_block)){
         tmp1<-F4Rinsgmu[[nb1]] - F4Rins[[nb1]][,j]*F4mu[[nb1]][j];
         tmp2 <- F4RinsGmu[[nb1]] - F4Rins2[[nb1]][,j]*F4mu[[nb1]][j];
@@ -115,7 +117,7 @@ RBMR_func_block<-function(F4Rblock, block_inf, nblocks, bh1, bh2, se1, se2,
 
       }
 
-      #sigma_k^2的估计值
+
       v2A <- 1/ (1/ (F4sG2[[nb1]])+(alpha_w/beta_w)*1/ sgal2)
       F4v2A[[nb1]]<-v2A
       pa_block<-NB[nb1]
@@ -127,7 +129,7 @@ RBMR_func_block<-function(F4Rblock, block_inf, nblocks, bh1, bh2, se1, se2,
         F4RinsGmuA[[nb1]] = tmp3 + F4Rins2[[nb1]][,k]*F4muA[[nb1]][k];
       }
 
-      #alpha_w和beta_w的估计值
+      #estimate the alpha_w and beta_w
       zong<-0
       pp_block<-NB[nb1]
       for(g in 1:pp_block){
